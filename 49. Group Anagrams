@@ -1,0 +1,39 @@
+# 49. Group Anagrams
+
+```java
+class Solution {
+    public List<List<String>> groupAnagrams(String[] strs) {
+        //hashmap
+        Map<String,ArrayList<String>> res= new HashMap<>();
+        for(String i:strs){
+            char[] tem= i.toCharArray();
+            Arrays.sort(tem);
+            String new_str= new String(tem);
+            if(!res.containsKey(new_str)){
+                res.put(new_str,new ArrayList<String>());
+            }
+            res.get(new_str).add(i);
+        }
+        return new ArrayList(res.values());
+    }
+}
+
+class Solution {
+    public List<List<String>> groupAnagrams(String[] strs) {
+        //hashmap
+        Map<String,ArrayList<String>> res= new HashMap<>();
+        for(String i:strs){
+            char[] tem= i.toCharArray();
+            Arrays.sort(tem);
+            String new_str= new String(tem);
+            if(res.containsKey(new_str)){
+                res.get(new_str).add(i);
+            }
+            else{
+                res.put(new_str,new ArrayList<String>());
+                res.get(new_str).add(i);
+            }
+        }
+        return new ArrayList(res.values());
+    }
+}
